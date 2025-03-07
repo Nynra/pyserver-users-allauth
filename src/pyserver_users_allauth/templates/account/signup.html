@@ -1,0 +1,54 @@
+{% extends "account/base_entrance.html" %}
+{% load allauth i18n %}
+
+{% block title %}
+<title>Signup</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white text-center">
+                    <h2>Sign Up</h2>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Already have an account? Then please <a href="{{ login_url }}">sign in</a>.
+                    </p>
+
+                    {% if not SOCIALACCOUNT_ONLY %}
+                    {% url 'account_signup' as action_url %}
+                    <form method="post" action="{{ action_url }}" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {% for field in form %}
+                            <div class="form-group">
+                                {{ field.label }}
+                                {{ field }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Sign Up
+                        </button>
+                    </form>
+                    {% endif %}
+
+                    {% if PASSKEY_SIGNUP_ENABLED %}
+                    <hr>
+                    <a href="{{ signup_by_passkey_url }}" class="btn btn-outline-primary w-100">
+                        Sign up using a passkey
+                    </a>
+                    {% endif %}
+
+                    {% if SOCIALACCOUNT_ENABLED %}
+                    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
