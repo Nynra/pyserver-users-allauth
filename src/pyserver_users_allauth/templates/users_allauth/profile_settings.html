@@ -1,0 +1,83 @@
+{% extends "server_base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    <title>{% trans "Profile Settings" %}</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">{% trans "Profile Settings" %}</h1>
+    <p class="text-center lead">{% trans "Manage your account settings and security options." %}</p>
+    
+    <div class="row mt-4">
+        {% url 'account_email' as email_url_ %}
+        {% if email_url_ %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{% trans "Change Email" %}</h5>
+                    <p class="card-text">{% trans "Update your email address." %}</p>
+                    <a href="{{ email_url_ }}" class="btn btn-primary">{% trans "Update Email" %}</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% url 'account_change_password' as change_password_url_ %}
+        {% if change_password_url_ %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{% trans "Change Password" %}</h5>
+                    <p class="card-text">{% trans "Update your password for better security." %}</p>
+                    <a href="{{ change_password_url_ }}" class="btn btn-warning">{% trans "Change Password" %}</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% url 'socialaccount_connections' as connections_url_ %}
+        {% if connections_url_ %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{% trans "Account Connections" %}</h5>
+                    <p class="card-text">{% trans "Manage your linked social accounts." %}</p>
+                    <a href="{{ connections_url_ }}" class="btn btn-info">{% trans "Manage Connections" %}</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="row mt-4">
+        {% url 'mfa_index' as mfa_url_ %}
+        {% if mfa_url_ %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{% trans "Two-Factor Authentication" %}</h5>
+                    <p class="card-text">{% trans "Enhance security with two-factor authentication." %}</p>
+                    <a href="{{ mfa_url_ }}" class="btn btn-success">{% trans "Manage 2FA" %}</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% url 'usersessions_list' as usersessions_list_url_ %}
+        {% if usersessions_list_url_ %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{% trans "Sessions" %}</h5>
+                    <p class="card-text">{% trans "View and manage active sessions." %}</p>
+                    <a href="{{ usersessions_list_url_ }}" class="btn btn-danger">{% trans "Manage Sessions" %}</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
