@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Load Bootstrap css and js -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Load the default theme -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main_theme.min.css' %}">
+
+    <header>
+        {% block title %}
+        <!-- Your title content goes here -->
+        <!-- <h1>GetCheesy</h1> -->
+        {% endblock %}
+    </header>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Add the nav bar -->
+    {% include "navbar.html" %}
+
+    <div class="container mt-4">
+        <!-- Navigation bar at the top -->
+        <ul class="nav bg-info">
+            <li class="nav-item">
+                <!-- Add your navigation items here if needed -->
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            {% block content %}
+            <!-- Main content area -->
+            {% endblock %}
+        </div>
+    </div>
+
+    <footer class="text-center mt-4">
+        <!-- Your footer content goes here -->
+        &copy; {% now "Y" %} PyserverUsersAllauth Demo Server
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+django
+django-bootstrap-v5
+django-allauth
+requests
+whitenoise
+pyserver-users-allauth @ git+https://github.com/Nynra/pyserver-users-allauth.git
+pyserver-tools @ git+https://github.com/Nynra/pyserver-tools.git
