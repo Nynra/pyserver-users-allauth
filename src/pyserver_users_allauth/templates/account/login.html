@@ -1,70 +1,72 @@
+
 {% extends "account/base_entrance.html" %}
 {% load i18n %}
 {% load allauth account %}
-{% load pyserver_tools_tags %} <!-- Ensure your custom tag is loaded -->
+{% load pyserver_tools_tags %}
 
 {% block title %}
-<title>Sign In</title>
+<title>{% trans "Sign In" %}</title>
 {% endblock %}
 
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white text-center">
-                    <h2>Sign In</h2>
+        <div class="col-lg-5 col-md-7">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white text-center primary-border-subtle">
+                    <h4>{% trans "Sign In" %}</h4>
                 </div>
                 <div class="card-body">
                     {% if not SOCIALACCOUNT_ONLY %}
-                    <p class="text-center">
-                        If you have not created an account yet, please
-                        <a href="{{ signup_url }}">sign up</a> first.
-                    </p>
+                    <div class="alert alert-secondary text-center" role="alert">
+                        {% trans "If you have not created an account yet, please" %}
+                        <a href="{{ signup_url }}" class="alert-link">{% trans "sign up" %}</a> 
+                        {% trans "first." %}
+                    </div>
 
                     {% url 'account_login' as login_url %}
                     <form method="post" action="{{ login_url }}" class="needs-validation" novalidate>
                         {% csrf_token %}
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <table class="table">
+                                <!-- Custom styling for better alignment -->
                                 {{ form.as_table }}
                             </table>
+                            
                         </div>
                         {{ redirect_field }}
-                        <button type="submit" class="btn btn-primary w-100">
-                            Sign In
+                        <button type="submit" class="btn btn-primary btn-lg btn-block w-100">
+                            {% trans "Sign In" %}
                         </button>
                     </form>
                     {% endif %}
 
                     {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
-                    <hr>
+                    <hr class="my-4">
                     <div class="d-grid gap-2">
                         {% if PASSKEY_LOGIN_ENABLED %}
                         <button type="submit" form="mfa_login" id="passkey_login" class="btn btn-outline-primary">
-                            Sign in with a passkey
+                            {% trans "Sign in with a passkey" %}
                         </button>
                         {% endif %}
                         {% if LOGIN_BY_CODE_ENABLED %}
                         <a href="{{ request_login_code_url }}" class="btn btn-outline-primary">
-                            Mail me a sign-in code
+                            {% trans "Mail me a sign-in code" %}
                         </a>
                         {% endif %}
                     </div>
                     {% endif %}
 
-                    <!-- Use the is_in_group tag to conditionally display content -->
                     {% if user|is_in_group:"admin" %}
-                    <div class="alert alert-info mt-3">
-                        Welcome, Admin! You have special privileges.
+                    <div class="alert alert-info mt-4">
+                        {% trans "Welcome, Admin! You have special privileges." %}
                     </div>
                     {% endif %}
-
                 </div>
             </div>
 
             {% if SOCIALACCOUNT_ENABLED %}
-            <div class="text-center mt-3">
+            <div class="text-center mt-4">
                 {% include "socialaccount/snippets/login.html" %}
             </div>
             {% endif %}
