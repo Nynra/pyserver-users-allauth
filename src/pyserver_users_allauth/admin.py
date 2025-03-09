@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from pyserver_users_allauth.forms import UserCreationForm, UserChangeForm
+from pyserver_users_allauth.forms import AdminUserCreationForm, AdminUserChangeForm
 from pyserver_users_allauth.models import User
 
 
 class UserAdmin(BaseUserAdmin):
-    add_form = UserCreationForm
-    form = UserChangeForm
+    add_form = AdminUserCreationForm
+    form = AdminUserChangeForm
     model = User
     list_display = (
         "username",

@@ -23,14 +23,12 @@
                     <form method="post" action="{{ action_url }}" class="needs-validation" novalidate>
                         {% csrf_token %}
                         <div class="mb-3">
-                            <table class="table">
-                                {% for field in form %}
-                                <tr>
-                                    <td>{{ field.label }}</td>
-                                    <td>{{ field }}</td>
-                                </tr>
-                                {% endfor %}
-                            </table>
+                            {% for field in form %}
+                            <tr>
+                                <td>{{ field.label }}</td>
+                                <td>{{ field }}</td>
+                            </tr>
+                            {% endfor %}
                         </div>
                         <button type="submit" class="btn btn-primary w-100">
                             Sign Up
