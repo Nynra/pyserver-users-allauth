@@ -16,11 +16,11 @@
         {% url 'account_email' as email_url_ %}
         {% if email_url_ %}
         <div class="col-md-4 mb-4">
-            <div class="card bg-primary primary-border-subtle">
+            <div class="card bg-secondary primary-border-subtle">
                 <div class="card-body text-center">
                     <h5 class="card-title">{% trans "Change Email" %}</h5>
                     <p class="card-text">{% trans "Update your email address." %}</p>
-                    <a href="{{ email_url_ }}" class="btn btn-secondary">{% trans "Update Email" %}</a>
+                    <a href="{{ email_url_ }}" class="btn btn-primary">{% trans "Update Email" %}</a>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
         {% url 'account_change_password' as change_password_url_ %}
         {% if change_password_url_ %}
         <div class="col-md-4 mb-4">
-            <div class="card bg-primary primary-border-subtle">
+            <div class="card bg-secondary primary-border-subtle">
                 <div class="card-body text-center">
                     <h5 class="card-title">{% trans "Change Password" %}</h5>
                     <p class="card-text">{% trans "Update your password for better security." %}</p>
@@ -42,7 +42,7 @@
         {% url 'socialaccount_connections' as connections_url_ %}
         {% if connections_url_ %}
         <div class="col-md-4 mb-4">
-            <div class="card bg-primary primary-border-subtle">
+            <div class="card bg-secondary primary-border-subtle">
                 <div class="card-body text-center">
                     <h5 class="card-title">{% trans "Account Connections" %}</h5>
                     <p class="card-text">{% trans "Manage your linked social accounts." %}</p>
